@@ -5,6 +5,7 @@
 *.drl
 *.zip
 *.bak
+*-bak
 *.net
 *.000
 *.pdf
