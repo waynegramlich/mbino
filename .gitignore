@@ -1,0 +1,13 @@
+*~
+*.svg
+*.g??
+*.ps
+*.drl
+*.zip
+*.bak
+*.net
+*.000
+*.pdf
+?savepcb.brd
+avrdude*
+rev_b_old

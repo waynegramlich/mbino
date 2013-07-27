@@ -1,0 +1,30 @@
+Patches:
+
+1) Swap TXD and RXD for Serial connector
+2) Add .1uF capacitor between RCS (green) on serial connector and reset rail
+3) Do not install power protection diodes, use wires instead.
+
+Notes:
+
+0) Move references off vias because vias are not tented
+1) Make the small mounting hole bigger.
+2) Add a 4th hole that aligns in lower left with Uno
+3) Make the holes true mechanical holes
+4) Make the test points have a hole in them.
+5) Rotate the fuses to horizontal
+6) Fix the diode footprints
+7) Move the serial connector back so pins do not stick out
+8) Think about using a SOT89 for 3V3 regulator.
+9) Provide an on board LED
+10) Change 4K7 I2C pull-up resistors to 2K2?
+11) Look for smaller fuses?
+12) Fix the swapped TX/RX lines on serial connector
+13) Think about adding a 3V3 step-down voltage for serial cable.
+14) Fix reset button
+15) Make reset circuit identical to Uno -- add .1 uF capacitor,
+    1K pull-down, and over voltage spike protection diode.
+16) Switch from ATmega324A to ATmega324PA
+17) Add jumpers comparable to Uno's
+18) Put a plus sign next to LED
+19) Connect ground (VSS) to Rs (pin 8) of U3 to put it into high speed mode
+20) Artwork for Terminate is reversed
