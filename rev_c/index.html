@@ -1,0 +1,280 @@
+								<HTML>
+								<Head>
+								<Title>
+MBino (Rev. C)
+								</Title>
+								</Head>
+								<Body>
+								<H1>
+MBino (Rev. C)
+								</H1>
+								<P>
+								</P>
+								<H2>
+Table of Contents
+								</H2>
+								<P>
+								<UL><LI>
+	<A HRef="#Schematic">
+    1.0 Schematic</A>
+								</LI><LI>
+	<A HRef="#Design_Files">
+    2.0 Design Files</A>
+								</LI><LI>
+	<A HRef="#Errata_and_Notes">
+    3.0 Errata and Notes</A>
+								</LI><LI>
+	<A HRef="#Bootloader">
+    4.0 Bootloader</A>
+								</LI><LI>
+	<A HRef="#IDE">
+    5.0 IDE</A>
+								</LI></UL>
+								</P>
+								<H2>
+    <A Name="Schematic">
+1.0 Schematic</A>
+								</H2>
+								<P>
+The schematic is available as either a
+    <A HRef="busduino.pdf">
+.pdf</A> file or as a
+    <A HRef="busduino.svg">
+.svg</A> (Scalable Vector Graphics) file.
+The .pdf file should print reasonably well on a black
+and white printer.  The .svg file is embedded below:
+								</P>
+
+    <Img Src="busduino.svg">
+								<P>
+There are two 2.1mm power jacks , N1 and N3.
+N1 feeds power through protection diode D1 and
+protection resettable polyfuse F2 to the LPWR1
+and LWPR2 pins of MakeBus connector N2.  D1 protects
+everthing if the power accidentally comes in with
+reverse polarity on N1.  (Connector N2 is labeled as
+"Robus" which is the previous bus name to "MakerBus".)
+The ground line of N1 is also connected to LGND1
+and LGND2 of N2.  The same thing happens with N3,
+F1, and D2 with BPWR1, BPWR2, BGND1, and BGND2 on N2.
+								</P><P>
+The LPWR1 and LPWR1 lines from N2 are further connected
+to the 5V linear regulator U1 and the 3.3V linear
+regulator U2 to provide 5 volts and 3.3 volts respectively.
+								</P><P>
+CANH and CANL of N2 or connected to the 5V CAN bus
+transceiver chip U3.  The 1 &times; 3 jumper J1 can
+be jumpered to connect a 124 ohm termination resistor R6.
+The 24K resistor R9 enables slope control for U3.
+The TXD and RXD pins are connected to the microcontroller
+U4 pins PD3 (TXD1) and PD2 (RXD1).  Capacitors C5-C10
+are .1&micro;F bypass capacitors for U4 and U3.
+16MHz crystal X1 and crystal 22pF capactiors C4 and C5
+provide the 16MHz frequency reference for U4.
+								</P><P>
+Connector N4 is a 2&times;8 pin combined JTAG and
+serial download connector that connects to the
+various JTAG pins on the microcontroller (U4).
+The serial debug lines from N4 are also connected
+to the 1&times;6 serial cable pin N5 before
+connecting to PD1 (TXD0) and PD0 (RXD0) on U4
+through 1K ohm resistors R2 and R3.  R2 and R3
+pins D0 (N9) and D1 (N9) to have priority over
+over both N4 and N5 is voltage sources are connected
+to both at the same time.  It is a really bad idea
+to attempt to use both N4 and N5 for serial downloading
+at the same time.  10K ohm resistor R1 and 1&micro;F
+capacitor C12 provide a simple reset circuit to trigger
+RESET on U4.  The reset button SW1 can also be used
+to manually reset U4.
+								</P><P>
+470 Ohm resistor R8 and LED D4 are connected to D13
+(N8) to provide an on-board LED.  470 ohm resistor R7
+and bicolor LED D3 are only meant to be used for
+debugging; they are not installed in the final product.
+Connectors N6 (Power/Reset pins), N7 (ISP header),
+N8 (D0-D13, GND, AREF), N9 (D0-D7) and N10 (A0-A5)
+are used used to connect to Arduino compatible shields.
+								</P><P>
+4.7K ohm resistors R4 and R5 are available to be used
+as pull up resistors for the I<Sup>2</Sup>C bus pins
+connected to D13 (SCK) and D12 (MISO) pins on U4.
+								</P>
+								<H2>
+    <A Name="Design_Files">
+2.0 Design Files</A>
+								</H2>
+								<P>
+This board was designed using KiCAD.  A complete KiCAD
+archive of board is found in
+    <A HRef="busduino.zip">
+busduino.zip</A>.  ("BusDuino" was the original name
+of the board before it was renamed to "MBino".)
+When this file is unzipped, the KiCad project file
+can be found down in
+<Code>robus/busdino/rev_b/busdino.pro</Code>.  Various
+shared <Code>.mod</Code> and <Code>.lib</Code> files
+are kept in the <Code>robus</Code> directory.  All
+Gerber and drill files are generated using KiCad.
+								</P>
+								<H2>
+    <A Name="Errata_and_Notes">
+3.0 Errata and Notes</A>
+								</H2>
+								<P>
+The following errors and issues are noted:
+								<UL><LI>
+    U1 Vin/Vout pins are swapped
+								</LI><LI>
+    A reset circuit from MakerBus is needed.
+								</LI></UL>
+								</P><P>
+The design notes for the reset circuit are:
+								<UL><LI>
+Use a SNLVC2G06 (dual open collector inverter):
+								</LI><LI>
+At VCC = 5V:
+								<UL><LI>
+   V<Sub>IH</Sub> = .7 * V<Sub>CC</Sub> = 3.5V
+								</LI><LI>
+   V<Sub>IL</Sub> = .3 * V<Sub>CC</Sub> = 1.5V
+								</LI><LI>
+   V<Sub>OL</Sub> = .55V
+								</LI><LI>
+   I<Sub>OL</Sub> = 32mA
+								</LI></UL>
+								</LI><LI>
+Assuming that the capacitor is clamped to VOL most
+of the time, the R*C that corresponds to charging
+from VOL to VIH in T seconds is the
+the basic capacitor charging equation:
+								</LI><UL><LI>
+  V(t) = V<Sub>OL</Sub> + (V<Sub>CC</Sub> -
+     V<Sub>OL</Sub>) * (1 - e<Sup>-t/R*C</Sup>)
+								</LI></UL><LI>
+Replacing V(t) with V<Sub>IH</Sub> and T:
+								<UL><LI>
+  V<Sub>IH</Sub> = V<Sub>OL</Sub> + (V<Sub>CC</Sub> -
+    V<Sub>OL</Sub>) * (1 - e<Sup>-T/R*C</Sup>)
+								</LI></UL>
+								</LI><LI>
+Solving for RC:
+								<UL><LI>
+  (V<Sub>IH</Sub> - V<Sub>OL</Sub>)/(V<Sub>CC</Sub> - V<Sub>L</Sub>) = 
+  1 - e<Sup>-T/R*C</Sup>
+								</LI><LI>
+  e<Sup>-T/R*C</Sup> = 1 - (V<Sub>IH</Sub> -
+    V<Sub>OL</Sub>)/(V<Sub>CC</Sub> - V<Sub>OL</Sub>)
+								</LI><LI>
+  -T/R*C = ln(1 - (V<Sub>IH</Sub> -
+    V<Sub>OL</Sub>)/(V<Sub>CC</Sub> - V<Sub>OL</Sub>))
+								</LI><LI>
+  R*C = -T/ln(1 - (V<Sub>IH</Sub> -
+    V<Sub>OL</Sub>)/(V<Sub>CC</Sub> - V<Sub>OL</Sub>))
+								</LI></UL>
+								</LI><LI>
+Substituting in for T=1mS, V<Sub>IH</Sub>,
+V<Sub>OL</Sub>, and V<Sub>CC</Sub>:
+								<UL><LI>
+  R*C =  -.001/ln(1 - (3.5 - .55)/(5 - .55))
+								</LI><LI>
+  R*C = -.001/-1.08744
+								</LI><LI>
+  R*C = .009196
+								</LI></UL>
+								</LI><LI>
+Setting C = .1&micro;F
+								<UL><LI>
+  R = .009196 / .0000001 = 9196
+								</LI></UL>
+Using an R near 10K should do the trick.
+								</LI><LI>
+The maximum discharge current is I<Sub>OL</Sub>.  Use Ohm's law
+to determine determine discharge resistor:
+								<UL><LI>
+   V = I * R
+								</LI><LI>
+   R = V / I
+     = 5 / .032
+     = 156.25
+								</LI></UL>
+Setting R<Sub>discharge</Sub> = 180 should be good enough.
+								</LI><LI>
+The charge/discharge ratio is:
+								<UL><LI>
+  R<Sub>charge</Sub>/R<Sub>discharge</Sub> = 10K/180 = 55.5
+								</LI></UL>
+								</LI></UL>
+								<P>
+								<H2>
+    <A Name="Bootloader">
+4.0 Bootloader</A>
+								</H2>
+								<P>
+{Bootloader discussion goes here!}
+								</P>
+								<H2>
+    <A Name="IDE">
+5.0 IDE</A>							</H2>
+								<P>
+The following URL specifies how to add a new board:
+								<BlockQuote>
+
+	<A HRef="http://www.avr-developers.com/corefiles/index.html">
+    http://www.avr-developers.com/corefiles/index.html</A>
+								</BlockQuote>
+								</P><P>
+The short answer is:
+								<Pre>
+    cd .../hardware
+    (cd arduino; tar cvf /tmp/arduino.tar .)
+    (mkdir {your_board_dir}; tar xvf /tmp/arduino.tar)
+    # now edit {your_board_dir}/boards.txt to configure your board
+    # now edit {your_board_dir}/programmers.txt
+								</Pre>
+The problem with this strategy is that you get a snap-shot of
+all the files and everything becomes out of date when the next
+release of the Arduino IDE comes out.  A better way is probably
+to have a shell script that make a copy of arduino files followed
+by a file that unzips the stuff that needs to be changed.  That
+may be just a few files.
+								</P><P>
+Here are the files that have been edited so far:
+								<DL><DT>
+  .../MBino/variants/standard/pins_arduino.h:			</DT><DD>
+								<Pre>
+    // Add 4 pins to the vector for I2C SDA, SCL, and external pull-ups
+    SDA = 20
+    SCL = 21
+
+    port_to_mode_PGM = {
+	// Add &DDRA,	// ATmega324 has a Port A
+
+    port_to_output_PGM = {
+	// Add &PORTA,	// ATmega324 has a Port A
+
+    port_to_input_PGM = {
+	// Add &PINA,	// ATmega324 has a Port A
+
+    digital_pin_to_port_PGM = {
+	// Remap digital pin ports
+
+    digital_pin_to_bit_mask_PGM = {
+	// Remap bit masks
+								</Pre>
+Obviously thes is pretty minor changes.
+								</DD></DL>
+								</P><P>
+{Create a .zip file that creates the various MBino
+sub-directories for the Arduino IDE.}
+								</P>
+								<HR>
+								<Address>
+    <A HRef="http://gramlich.net/copyright.html">
+Copyright</A> 2013 by
+    <A HRef="http://gramlich.net/index.html">
+Wayne C. Gramlich</A>.
+All rights reserved.
+								</Address>
+								</Body>
+								</HTML>
