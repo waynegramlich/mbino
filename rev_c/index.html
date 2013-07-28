@@ -37,15 +37,15 @@ Table of Contents
 								</H2>
 								<P>
 The schematic is available as either a
-    <A HRef="busduino.pdf">
+    <A HRef="mbino.pdf">
 .pdf</A> file or as a
-    <A HRef="busduino.svg">
+    <A HRef="mbino.svg">
 .svg</A> (Scalable Vector Graphics) file.
 The .pdf file should print reasonably well on a black
 and white printer.  The .svg file is embedded below:
 								</P>
 
-    <Img Src="busduino.svg">
+    <Img Src="mbino.svg">
 								<P>
 There are two 2.1mm power jacks , N1 and N3.
 N1 feeds power through protection diode D1 and
@@ -105,17 +105,10 @@ connected to D13 (SCK) and D12 (MISO) pins on U4.
 2.0 Design Files</A>
 								</H2>
 								<P>
-This board was designed using KiCAD.  A complete KiCAD
-archive of board is found in
-    <A HRef="busduino.zip">
-busduino.zip</A>.  ("BusDuino" was the original name
-of the board before it was renamed to "MBino".)
-When this file is unzipped, the KiCad project file
-can be found down in
-<Code>robus/busdino/rev_b/busdino.pro</Code>.  Various
-shared <Code>.mod</Code> and <Code>.lib</Code> files
-are kept in the <Code>robus</Code> directory.  All
-Gerber and drill files are generated using KiCad.
+This board was designed using KiCAD.  The design
+files are kept at
+    <A HRef="http://github.com/waynegramlich/mbino">
+http://github.com/waynegramlich/mbino</A>.
 								</P>
 								<H2>
     <A Name="Errata_and_Notes">
@@ -124,9 +117,7 @@ Gerber and drill files are generated using KiCad.
 								<P>
 The following errors and issues are noted:
 								<UL><LI>
-    U1 Vin/Vout pins are swapped
-								</LI><LI>
-    A reset circuit from MakerBus is needed.
+    A reset circuit for MakerBus is needed.
 								</LI></UL>
 								</P><P>
 The design notes for the reset circuit are:

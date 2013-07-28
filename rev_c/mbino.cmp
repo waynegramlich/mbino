@@ -1,16 +1,16 @@
-Cmp-Mod V01 Created by CVPcb (2011-08-24 BZR 3081)-stable date = Sat 13 Oct 2012 10:09:42 PM PDT
+Cmp-Mod V01 Created by CvPcb (2013-06-29 BZR 4231)-testing date = Sun 28 Jul 2013 02:37:08 PM PDT
 
 BeginCmp
-TimeStamp = /4FEA7A05;
+TimeStamp = /4FEA7A13;
 Reference = C1;
-ValeurCmp = .33uF;
+ValeurCmp = 1uF;
 IdModule  = CAPC1608X90N;
 EndCmp
 
 BeginCmp
-TimeStamp = /4FEA7A13;
+TimeStamp = /4FEA7A05;
 Reference = C2;
-ValeurCmp = 1uF;
+ValeurCmp = .33uF;
 IdModule  = CAPC1608X90N;
 EndCmp
 
@@ -81,6 +81,20 @@ BeginCmp
 TimeStamp = /505CC37F;
 Reference = C12;
 ValeurCmp = 1uF;
+IdModule  = CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = /51F56FC9;
+Reference = C13;
+ValeurCmp = .1uF;
+IdModule  = CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = /51F58FE8;
+Reference = C14;
+ValeurCmp = .1uF;
 IdModule  = CAPC1608X90N;
 EndCmp
 
@@ -323,6 +337,20 @@ IdModule  = RESC1608X50N;
 EndCmp
 
 BeginCmp
+TimeStamp = /51F565D8;
+Reference = R10;
+ValeurCmp = 180;
+IdModule  = RESC1608X50N;
+EndCmp
+
+BeginCmp
+TimeStamp = /51F563F3;
+Reference = R11;
+ValeurCmp = 10K;
+IdModule  = RESC1608X50N;
+EndCmp
+
+BeginCmp
 TimeStamp = /50712789;
 Reference = SW1;
 ValeurCmp = KSS221GLFS;
@@ -330,9 +358,9 @@ IdModule  = KSS221GLFS;
 EndCmp
 
 BeginCmp
-TimeStamp = /4FFC8DAE;
+TimeStamp = /51F54577;
 Reference = U1;
-ValeurCmp = L78M05CDT-TR;
+ValeurCmp = L78L05CDT-TR;
 IdModule  = DPAK;
 EndCmp
 
@@ -355,6 +383,13 @@ TimeStamp = /4FE94FFD;
 Reference = U4;
 ValeurCmp = ATMEGA324_QFP44;
 IdModule  = QFP80P1200X1200X120-44N;
+EndCmp
+
+BeginCmp
+TimeStamp = /51F56F89;
+Reference = U5;
+ValeurCmp = 74x2G06;
+IdModule  = SOT95P280X145-6N;
 EndCmp
 
 BeginCmp
